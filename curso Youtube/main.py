@@ -12,8 +12,16 @@ products = [
 @app.get("/products")
 def get_products():
     return products
-# Variable dinamica en la ruta
-# Fasti API depende del tipo de parametro, lo ideal es epecificar el tipo de parametro en cada variable
-@app.get("/items/{item_id}")
-def read_item(item_id: int,):
-    return {'item_id': item_id}
+
+@app.get('/product/{id}')
+def get_product(id: int):
+    for product in products:
+        if product.id == id:
+            return product
+    return {"error": "Product not found"}
+
+@app.post('/product')
+def add_product(product: Product):
+    products.append(product)
+    return product
+
