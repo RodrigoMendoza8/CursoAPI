@@ -1,6 +1,13 @@
 from fastapi import FastAPI
-from models import Product
+from pydantic import BaseModel
 
+class Product(BaseModel):
+    id: int
+    name: str
+    description: str
+    price: float
+    quantity: int
+    
 app = FastAPI()
 
 products = [
