@@ -1,5 +1,17 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from backend.database import Base, engine, get_db
+from backend.models import MensajeLog
+from backend.schemas import (
+    MensajeLogCreate,
+    MensajeLogRead,
+    MensajeLogUpdate,
+    MensajeListResponse,
+    MensajeLogItemResponse,
+    MensajeDeleteResponse,
+)
+from backend.services.whats import enviar_mensaje
+
 
 class Product(BaseModel):
     id: int
